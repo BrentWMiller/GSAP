@@ -1,0 +1,34 @@
+.btn {
+	height: 4em;
+	width: 4em;
+	padding: 1em;
+
+	background-color: #0e9cf3;
+	opacity: 0.9;
+	box-shadow: 0 0 10px lighten(#0e9cf3, 10%);
+	border: none;
+	color: #fff;
+
+	text-align: center;
+
+	cursor: pointer;
+	.material-icons {
+		display: flex;
+		justify-content: center;
+	}
+
+	&:focus { outline: none; }
+}
+
+.btn-group { position: relative; }
+
+.btn-group--options {
+	display: none;
+	position: absolute;
+}
+
+.btn__option {
+	border-radius: 50%;
+	margin-bottom: .15em;
+	transform: scale(.8);
+}
