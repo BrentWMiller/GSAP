@@ -36,19 +36,18 @@
   box-shadow: 0 0 10px #3fb0f5;
   border: none;
   color: #fff;
-  text-align: center;
   cursor: pointer; }
+  .btn:focus {
+    outline: none; }
   .btn .material-icons {
     display: flex;
     justify-content: center; }
-  .btn:focus {
-    outline: none; }
 
 .btn-group {
   position: relative; }
 
 .btn-group--options {
-  display: none;
+  visibility: hidden;
   position: absolute; }
 
 .btn__option {
