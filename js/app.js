@@ -4,12 +4,19 @@ const mainButton = $('.btn__main'),
 
 	  animationTime = 0.3;
 
-var clicked = false;
+var clicked;
 
 // Timelines
-var tlMainButton = new TimelineMax().pause();
-var tlMenu = new TimelineMax().pause();
-var tlOption = new TimelineMax().pause();
+const tlMaster = new TimelineMax();
+const tlMainButton = new TimelineMax();
+const tlMenu = new TimelineMax();
+const tlOption = new TimelineMax();
+
+tlMaster
+	.add(tlMainButton)
+	.add(tlMenu)
+	.add(tlOption)
+	.pause();
 
 tlMainButton
 	.fromTo(mainButton, animationTime, {
@@ -49,16 +56,9 @@ tlOption
 	},
 	-.15);
 
+// Trigger
 mainButton.click(() => {
 	clicked = !clicked;
 
-	if (clicked) {
-		tlMainButton.play();
-		tlMenu.play();
-		tlOption.play();
-	} else {
-		tlMainButton.reverse();
-		tlMenu.reverse();
-		tlOption.reverse();
-	};
+	clicked ? tlMaster.play() : tlMaster.reverse();
 });
