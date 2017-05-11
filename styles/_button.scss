@@ -9,21 +9,18 @@
 	border: none;
 	color: #fff;
 
-	text-align: center;
-
 	cursor: pointer;
+	&:focus { outline: none; }
 	.material-icons {
 		display: flex;
 		justify-content: center;
 	}
-
-	&:focus { outline: none; }
 }
 
 .btn-group { position: relative; }
 
 .btn-group--options {
-	display: none;
+	visibility: hidden;
 	position: absolute;
 }
 
