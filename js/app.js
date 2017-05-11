@@ -1,63 +1,64 @@
-const button = $('.btn__main');
-const buttonOptions = $('.btn-group--options');
-const buttonOption = $('.btn__option');
+const mainButton = $('.btn__main'),
+	  menu = $('.btn-group--options'),
+	  option = $('.btn__option'),
+
+	  animationTime = 0.3;
 
 var clicked = false;
 
-button.click(
-	function () {
-		let animRotation,
-			animBorderRadius,
-			animBgColor;
+// Timelines
+var tlMainButton = new TimelineMax().pause();
+var tlMenu = new TimelineMax().pause();
+var tlOption = new TimelineMax().pause();
 
-		clicked = !clicked;
+tlMainButton
+	.fromTo(mainButton, animationTime, {
+		borderRadius: 0,
+		rotation: 0,
+		backgroundColor: '#0e9cf3',
+		boxShadow: `0 0 10px #0e9cf3`,
+		ease: Back.easeIn
+	},
+	{
+		borderRadius: 50,
+		rotation: 45,
+		backgroundColor: '#fd4f48',
+		boxShadow: `0 0 10px #fd4f48`
+	});
 
-		if (clicked) {
-			animRotation = 45;
-			animBgColor = '#fd4f48';
-			animBorderRadius = 50;
+tlMenu
+	.fromTo(menu, animationTime, {
+		visibility: 'hidden',
+		scale: 0,
+		bottom: 0
+	},
+	{
+		visibility: 'visible',
+		scale: 0.8,
+		bottom: '3em'
+	});
 
-			buttonOptions.show();
+tlOption
+	.staggerFromTo(option, animationTime, {
+		rotation: 45,
+		scale: 0,
+	},
+	{
+		rotation: 0,
+		scale: 0.8,
+	},
+	-.15);
 
-		} else {
-			animRotation = 0;
-			animBgColor = '#0e9cf3';
-			animBorderRadius = 0;
+mainButton.click(() => {
+	clicked = !clicked;
 
-			buttonOptions.hide();
-		}
-
-		TweenMax.to($(this), 0.3, {
-			backgroundColor: animBgColor,
-			boxShadow: `0 0 10px ${animBgColor}`,
-			rotation: animRotation,
-			borderRadius: animBorderRadius,
-			ease:Back.easeIn
-		});
-
-		TweenMax.from($(buttonOptions), 0.3, {
-			bottom: 0,
-			ease:Back.easeIn
-		}),
-		TweenMax.to($(buttonOptions), 0.3, {
-			bottom: '4em',
-		});
-
-
-		TweenMax.staggerFrom($(buttonOption), 0.3,
-			{
-				rotation: 90,
-				scale: 0,
-				ease:Back.easeIn
-			},
-			-.15
-		),
-		TweenMax.staggerTo($(buttonOption), 0.3,
-			{
-				rotation: 0,
-				scale: .8
-			},
-			-.15
-		);
-	}
-);
+	if (clicked) {
+		tlMainButton.play();
+		tlMenu.play();
+		tlOption.play();
+	} else {
+		tlMainButton.reverse();
+		tlMenu.reverse();
+		tlOption.reverse();
+	};
+});
