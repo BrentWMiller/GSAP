@@ -1,22 +1,17 @@
 const mainButton = $('.btn__main'),
 	  menu = $('.btn-group--options'),
-	  option = $('.btn__option'),
-
-	  animationTime = .1;
-
-var clicked;
+	  option = $('.btn__option');
 
 // Timelines
-const tlMaster = new TimelineMax();
+const tlFabMaster = new TimelineMax({paused: true});
 const tlMainButton = new TimelineMax();
 const tlMenu = new TimelineMax();
 const tlOption = new TimelineMax();
 
-tlMaster
+tlFabMaster
 	.add(tlMainButton)
 	.add(tlMenu)
-	.add(tlOption)
-	.pause();
+	.add(tlOption);
 
 tlMainButton
 	.fromTo(mainButton, animationTime, {
@@ -62,5 +57,5 @@ tlOption
 mainButton.click(() => {
 	clicked = !clicked;
 
-	clicked ? tlMaster.play() : tlMaster.reverse();
+	clicked ? tlFabMaster.play() : tlFabMaster.reverse();
 });
