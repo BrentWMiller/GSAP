@@ -32,8 +32,6 @@
   width: 4em;
   padding: 1em;
   background-color: #0e9cf3;
-  opacity: 0.9;
-  box-shadow: 0 0 10px #3fb0f5;
   border: none;
   color: #fff;
   cursor: pointer; }
@@ -43,6 +41,10 @@
     display: flex;
     justify-content: center; }
 
+.btn__main {
+  position: relative;
+  z-index: 2; }
+
 .btn-group {
   position: relative; }
 
@@ -51,6 +53,8 @@
   position: absolute; }
 
 .btn__option {
+  position: relative;
+  z-index: 1;
   border-radius: 50%;
   margin-bottom: .15em;
   transform: scale(0.8); }
